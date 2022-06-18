@@ -83,7 +83,10 @@ class _NewsAppState extends State<NewsApp> {
   itemBuilder: (BuildContext context, int index) {
     return Dummy(title: widget._posts[index].title,
     imageUrl: widget._posts[index].imageUrl,
-    description: widget._posts[index].description);
+    description: widget._posts[index].description,
+    onTap: ()=> Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { 
+      return  DummyDetail(news: widget._posts[index]);
+     })),);
     
   }
     )

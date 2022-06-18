@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/news_app.dart';
 
 class DummyDetail extends StatelessWidget {
-  const DummyDetail({Key? key, this.title, this.imageUrl,this.description}) : super(key: key);
-  final String? title;
-  final String? imageUrl;
-  final String? description;
+  const DummyDetail({Key? key,this.news}) : super(key: key);
+  final News? news;
+
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-          color: Colors.deepPurple,
-          child: Image.network('$imageUrl'),height: 70,
-          
-          
-          ),
+    return Scaffold(
+      appBar: AppBar(title:const Text('Details')),
+      body: SafeArea(
+        child: Column(
+          children: 
+              [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                    color: Colors.deepPurple,height: 70,
+                    child:  Image.network('${news?.imageUrl}'),
+                    
+                    ),
+                  ),
+                  Expanded
+                  (child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(news?.title ?? '',style: const TextStyle(fontWeight: FontWeight.bold),),
+                      Text(news?.description ?? '')
+                    ],
+                  )),
+                   
+                ],
+              ),
+            ],
         ),
-        // Column(
-        //   children: [
-        //     Text(title!,),
-        //     Text(description!),
-        //   ],
-        // ),
-
-         
-      ],
+      ),
     );
   }
 }
